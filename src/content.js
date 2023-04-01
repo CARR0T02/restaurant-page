@@ -2,13 +2,20 @@ function testfunction() {
   console.log('export worked');
 }
 
-function createCustomElement(element, text, classes) {
-  const node = document.createElement(element);
-  node.textContent = text;
-  if (classes !== undefined) {
-    const classArr = _classes.split(' ');
+function createCustomElement(elementObj) {
+  const node = document.createElement(elementObj.getElement());
+  node.textContent = elementObj.getText();
+  let classes = elementObj.getClasses();
+  if (!classes) {
+    const classArr = elementObj.classes.split(' ');
     for (const _class of classArr) {
       node.classList.add(_class);
+    }
+  }
+  if (!elementObj.getChildren()) {
+    for (const child of elementObj.getChildren()) {
+      const childElement = createCustomElement(child);
+      node.appendChild(childElement);
     }
   }
   return node;
@@ -43,6 +50,14 @@ const createElementObj = (element, text, classes, children = []) => {
 
   return { addChild, getElement, getText, getClasses, getChildren };
 };
+
+// Takes in the Content Array and edits div.content to add all required elements.
+function loadContent(contentArr) {
+  const contentContainer = document.querySelector('#content');
+  for (const elementObj of contentArr) {
+    contentContainer.appendChild(createCustomElement(elementObj));
+  }
+}
 
 const homeContent = (function () {})();
 
