@@ -1,18 +1,14 @@
-function testfunction() {
-  console.log('export worked');
-}
-
-function createCustomElement(elementObj) {
+export function createCustomElement(elementObj) {
   const node = document.createElement(elementObj.getElement());
   node.textContent = elementObj.getText();
   let classes = elementObj.getClasses();
-  if (!classes) {
-    const classArr = elementObj.classes.split(' ');
+  if (classes) {
+    const classArr = classes.split(' ');
     for (const _class of classArr) {
       node.classList.add(_class);
     }
   }
-  if (!elementObj.getChildren()) {
+  if (elementObj.getChildren().length !== 0) {
     for (const child of elementObj.getChildren()) {
       const childElement = createCustomElement(child);
       node.appendChild(childElement);
@@ -22,7 +18,12 @@ function createCustomElement(elementObj) {
 }
 
 // Element and Text are strings, Classes is a string and Children is an array of ElementObj
-const createElementObj = (element, text, classes, children = []) => {
+export const createElementObj = (
+  element,
+  text,
+  classes = '',
+  children = []
+) => {
   let _element = element;
   let _text = text;
   let _classes = classes;
@@ -52,7 +53,7 @@ const createElementObj = (element, text, classes, children = []) => {
 };
 
 // Takes in the Content Array and edits div.content to add all required elements.
-function loadContent(contentArr) {
+export function loadContent(contentArr) {
   const contentContainer = document.querySelector('#content');
   for (const elementObj of contentArr) {
     contentContainer.appendChild(createCustomElement(elementObj));
@@ -71,8 +72,3 @@ const testContent = {
   _classes: 'flex flex-col',
   children: [],
 };
-
-const homeTestContent = [
-  createElementObj('h1', 'something', 'flex flex-col'),
-  createElementObj('div', '', 'flex flex-col'),
-];
