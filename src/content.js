@@ -54,6 +54,12 @@ export const createElementObj = (
   return { addChild, getElement, getText, getClasses, getChildren };
 };
 
+export function clearContent() {
+  const main = document.querySelector('.main');
+  const content = document.querySelector('.content');
+  content.removeChild(main);
+}
+
 // Takes in the Content Array and edits div.content to add all required elements.
 export function loadContent(contentArr) {
   const contentContainer = document.querySelector('#content');
@@ -61,16 +67,3 @@ export function loadContent(contentArr) {
     contentContainer.appendChild(createCustomElement(elementObj));
   }
 }
-
-const homeContent = (function () {})();
-
-var menuContent = (function () {})();
-
-var contactContent = (function () {})();
-
-const testContent = {
-  element: 'h1',
-  text: 'something',
-  _classes: 'flex flex-col',
-  children: [],
-};
