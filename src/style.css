@@ -81,10 +81,6 @@ ol[role='list'] {
   background-color: #18181896;
 }
 
-.clr-alt {
-  color: var(--clr-alt);
-}
-
 #container {
   height: 100%;
   display: flex;
@@ -124,6 +120,7 @@ li:hover {
 
 .main {
   height: 100%;
+  transition: opacity 1s;
 }
 
 .logo {
