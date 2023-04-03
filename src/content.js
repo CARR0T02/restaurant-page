@@ -1,6 +1,8 @@
 export function createCustomElement(elementObj) {
   const node = document.createElement(elementObj.getElement());
-  node.textContent = elementObj.getText();
+  if (elementObj.getText()) {
+    node.textContent = elementObj.getText();
+  }
   let classes = elementObj.getClasses();
   if (classes) {
     const classArr = classes.split(' ');
