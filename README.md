@@ -1,5 +1,7 @@
 # restaurant-page
 
+[Link to Page](https://carr0t02.github.io/restaurant-page/)
+
 This project is to practice what I have learnt on The Odin Project (TOP).
 
 Skills consist of:
