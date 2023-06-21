@@ -7,6 +7,8 @@ let currentPage = 'Home';
 
 function initialisePage(homeContent) {
   loadContent(homeContent);
+  const menu = document.querySelector('button');
+  menu.addEventListener('click', changePage);
   const navButtons = document.querySelectorAll('li');
   for (const button of navButtons) {
     button.addEventListener('click', changePage);
